@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import Avatar from "./avatar";
 import { Separator } from "@/components/ui/separator";
 
 export default function AccountForm({ user }: { user: User | null }) {
@@ -91,6 +92,15 @@ export default function AccountForm({ user }: { user: User | null }) {
         <CardHeader>
           <CardTitle>Account</CardTitle>
           <CardDescription>Update your account details</CardDescription>
+          <Avatar
+            uid={user?.id ?? null}
+            url={avatar_url}
+            size={150}
+            onUpload={(url) => {
+              setAvatarUrl(url);
+              updateProfile({ fullname, username, website, avatar_url: url });
+            }}
+          />
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
           <div>
